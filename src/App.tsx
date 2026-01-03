@@ -3,15 +3,12 @@ import { Volume2, VolumeX, Home, NotebookPen, Music, Calendar, Unlink } from 'lu
 import Dock from './components/Dock';
 import {
   HomePage,
-  PoemPage,
-  PlaylistPage,
-  AffirmationsPage,
-  GoodbyePage
+  PlaylistPage
 } from './components/Pages';
 import song from './assets/bg_song1.mp3';
 
 // Define the page IDs once for reuse
-type PageID = 'home' | 'poem' | 'playlist' | 'affirmations' | 'goodbye';
+type PageID = 'home' | 'playlist' ;
 
 export default function App() {
   const [activePage, setActivePage] = useState<PageID>('home');
@@ -26,10 +23,7 @@ export default function App() {
   // Pages array
   const pages = [
     { id: 'home', name: 'Home', icon: Home },
-    { id: 'poem', name: 'Poems', icon: NotebookPen },
-    { id: 'playlist', name: 'Playlist', icon: Music },
-    { id: 'affirmations', name: 'Affirmations', icon: Calendar },
-    { id: 'goodbye', name: 'Goodbye', icon: Unlink }
+    { id: 'playlist', name: 'Playlist', icon: Music }
   ]; // Mutable array, no 'as const'
 
   useEffect(() => {
@@ -141,14 +135,8 @@ export default function App() {
             containerRef={containerRef}
           />
         );
-      case 'poem':
-        return <PoemPage />;
       case 'playlist':
         return <PlaylistPage />;
-      case 'affirmations':
-        return <AffirmationsPage />;
-      case 'goodbye':
-        return <GoodbyePage />;
       default:
         return null;
     }
